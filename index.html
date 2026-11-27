@@ -110,8 +110,6 @@ main { overflow: hidden; }
 .author { color: #a3a3bd; font-size: 12px; letter-spacing: .18em; }
 .poem-lines { margin: 38px 0 32px; }
 .poem-lines p { font: 400 clamp(15px, 1.38vw, 23px)/1.95 var(--serif); letter-spacing: .04em; margin: 0 0 4px; color: #e1dfeb; }
-.text-link { font-size: 11px; color: #9e98bc; border-bottom: 1px solid #79759470; padding: 0 0 6px; letter-spacing: .08em; }
-.text-link span { margin-left: 14px; }
 .visual { position: relative; aspect-ratio: 1.26; min-height: 290px; max-height: 610px; background: #222944; overflow: hidden; isolation: isolate; }
 .visual-corner { position: absolute; width: 17px; height: 17px; border-color: #d4ceec89; border-style: solid; pointer-events: none; z-index: 10; }
 .visual-corner.tl { top: 14px; left: 14px; border-width: 1px 0 0 1px; }
@@ -223,11 +221,6 @@ main { overflow: hidden; }
 .quick-menu .eyebrow button { font-size: 25px; }
 .quick-menu h3 { font: 12px var(--sans); color: #c0b5e8; margin: 17px 0 5px; }
 .quick-menu div > button:not(.eyebrow button) { display: flex; width: 100%; justify-content: space-between; text-align: left; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
-.art-overlay { position: fixed; inset: 0; z-index: 100; background: #080a18dc; backdrop-filter: blur(12px); display: flex; justify-content: center; align-items: center; padding: 25px; }
-.art-dialog { max-width: min(1200px, 95vw); max-height: 94vh; background: #20223a; padding: 12px; box-shadow: 0 25px 70px #0007; }
-.art-dialog > div { display: flex; align-items: center; justify-content: space-between; font: 11px Arial,var(--sans); letter-spacing: .12em; padding: 0 5px 10px; }
-.art-dialog button { font: 26px Arial; }
-.art-dialog img { display: block; max-width: 100%; max-height: 83vh; object-fit: contain; margin: auto; }
 @media (min-width: 1750px) { .scene { min-height: 810px; } }
 @media (max-width: 1100px) { .wrap,.topbar-inner { width: calc(100% - 54px); } .topbar nav { gap: 18px; } .cover { min-height: 620px; } .cover-copy { padding-left: 5%; } .scene,.contents,.chapter-banner { padding-left: 4%; padding-right: 4%; } .scene { min-height: 590px; } .scene-main { gap: 5%; } .reading-marker { right: 5px; } }
 @media (max-width: 740px) { html { scroll-padding-top: 64px; } .topbar { height: 60px; } .topbar-inner,.wrap { width: calc(100% - 24px); } .topbar nav { gap: 10px; } .topbar nav button span,.brand small,.menu-toggle span { display: none; } .brand { font-size: 17px; gap: 5px; } .brand-mark { font-size: 20px; } .topbar nav button { font-size: 10px; } .cover { height: auto; min-height: 740px; align-items: start; } .cover-copy { width: 100%; padding: 55px 6% 0; } .cover-copy .eyebrow { margin-bottom: 20px; font-size: 9px; } .cover-title { font-size: 48px; } .cover h1 { font-size: 70px; } .cover-caption { font-size: 13px; } .celestial { top: 72%; right: 3%; width: 88%; } .cover-bottom { font-size: 8px; } .cover-bottom span:nth-child(2) { display: none; } .contents { display: block; padding: 55px 5% 70px; min-height: auto; } .chapter-list { margin-top: 35px; } .chapter-name { font-size: 20px; } .chapter-main { grid-template-columns: 20px 1fr 1fr 22px; gap: 8px; } .index-poems { padding-left: 28px; } .chapter-banner { min-height: 180px; } .chapter-banner-inner { gap: 20px; } .chapter-banner h2 { font-size: 25px; } .chapter-banner h2 small { font-size: 10px; } .scene { min-height: 0; padding: 20px 4% 25px; } .scene-main,.reverse .scene-main { display: flex; flex-direction: column; align-items: stretch; padding-top: 26px; gap: 28px; } .poem-lines { margin: 22px 0; } .poem-lines p { font-size: 16px; } .visual { min-height: 0; } .visual-controls { font-size: 10px; } .reading-marker { display: none; } .quick-menu { top: 60px; right: 12px; width: min(335px,calc(100% - 24px)); } .ending { padding-top: 80px; } .footer-line { gap: 12px; font-size: 8px; text-align: left; } }
@@ -470,19 +463,18 @@ const chapters = [
 ];
 const poems = [
     { id: 'light', chapter: 'am', page: 3, title: '一代人', author: '顾城', en: 'A Generation', type: 'light', hint: '移动光源，寻找光明', action: '点亮光明', lines: ['黑夜给了我黑色的眼睛，', '我却用它寻找光明。'] },
-    { id: 'birds', chapter: 'am', page: 4, title: '鸽', author: '海子', en: 'Dove', type: 'birds', hint: '轻触晨光，让鸟儿惊醒', action: '唤醒清晨', lines: ['不知你是站在屋脊上呢，还是站在树枝上', '把我从沉睡中唤醒', '你的歌声清新而委婉，圆润如花瓣上的新露', '给我这阴暗的房子，流注了草木的香气', '和温柔如乳液的晨光'] },
+    { id: 'birds', chapter: 'am', page: 4, title: '鸫', author: '艾青', en: 'Thrush', type: 'birds', hint: '轻触晨光，让鸟儿惊醒', action: '唤醒清晨', lines: ['不知你是站在屋脊上呢，还是站在树枝上', '把我从沉睡中唤醒', '你的歌声清新而委婉，圆润如花瓣上的新露', '给我这阴暗的房子，流注了草木的香气', '和温柔如乳液的晨光'] },
     { id: 'sunrise', chapter: 'am', page: 5, title: '日出', author: '海子', en: 'Sunrise', type: 'sunrise', hint: '拖动时间，太阳缓缓升起', action: '迎接日出', lines: ['在黑暗尽头', '太阳扶着我站起来', '我的身体像一个亲爱的祖国，血液流遍', '我是一个完全幸福的人', '我再也不会否认', '我是一个完全的人', '我是一个无比幸福的人', '我全身的黑暗因太阳升起而解除'] },
     { id: 'windows', chapter: 'noon', page: 6, title: '我是一个任性的孩子', author: '顾城', en: 'A Willful Child', type: 'windows', hint: '点击小窗，让光透进来', action: '打开所有窗', lines: ['我想在大地上', '画满窗子', '让所有习惯黑暗的眼睛', '都习惯光明'] },
     { id: 'fall', chapter: 'noon', page: 7, title: '如果白昼落进', author: '聂鲁达', en: 'If the Daylight Falls In', type: 'fall', hint: '让文字落下，再打捞光明', action: '让白昼落下', lines: ['每个白昼都要落进黑沉沉的夜', '像有那么一口井锁住了光明', '必须坐在黑洞洞的井口', '要很有耐心', '打捞掉落下去的光明'] },
     { id: 'sand', chapter: 'noon', page: 8, title: '某个夜深人静时刻', author: '李元胜', en: 'A Certain Quiet Moment Late at Night', type: 'sand', hint: '点击沙漏，重新流转时间', action: '翻转沙漏', lines: ['如果时间穿过我们', '好比流沙穿过沙漏', '没有积累，只有循环', '那整个庞大的一生', '都不能填充眼前这一小段空虚', '我可以佯装不知', '也可以继续顺水漂流', '但我知道', '某个夜深人静时刻', '世界会突然轻声发问'] },
     { id: 'rain', chapter: 'pm', page: 9, title: '热爱生命', author: '汪国真', en: 'Love Life', type: 'rain', hint: '在水面点击，留下雨的涟漪', action: '落下一滴雨', lines: ['我不去想是否能够成功', '既然选择了远方', '便只顾风雨兼程'] },
     { id: 'moon', chapter: 'pm', page: 10, title: '月光', author: '海子', en: 'Moonlight', type: 'moon', hint: '移动月光，照亮水面', action: '让月光普照', lines: ['月光照着月光', '月光普照', '今夜美丽的月光合在一起流淌'] },
-    { id: 'dusk', chapter: 'pm', page: 11, title: '晚云', author: '原稿未署名 · 暂题', en: 'Evening Clouds', type: 'dusk', hint: '移动暮色，拉长影子', action: '交换光影', lines: ['晚云在暮天上散锦，', '溪水在残日里流金；', '我瘦长的影子飘在地上，', '像山间古树底寂寞的幽灵。'] },
+    { id: 'dusk', chapter: 'pm', page: 11, title: '夕阳下', author: '戴望舒', en: 'At Sunset', type: 'dusk', hint: '移动暮色，拉长影子', action: '交换光影', lines: ['晚云在暮天上散锦，', '溪水在残日里流金；', '我瘦长的影子飘在地上，', '像山间古树底寂寞的幽灵。'] },
     { id: 'dream', chapter: 'pm', page: 11, title: '断章', author: '卞之琳（识别题名）', en: 'Fragment', type: 'dream', hint: '点击窗框，交换观看者与风景', action: '交换视角', lines: ['你站在桥上看风景', '看风景人在楼上看你', '明月装饰了你的窗子', '你装饰了别人的梦'] },
     { id: 'end', chapter: 'pm', page: 12, title: '今夜，我特别想你', author: '余秀华', en: 'Tonight, I Miss You', type: 'end', hint: '触碰文字，让时间暂时停下', action: '暂停时间', lines: ['只是想到你', '世界在明亮的光晕里倒退', '一些我们以为永恒的', '包括时间', '都', '不堪一击'] }
 ];
 const asset = (name) => IMAGES[name];
-const pageArt = (n) => asset('page-' + String(n).padStart(2, '0'));
 const pad = (n) => String(n).padStart(2, '0');
 const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 const starPoints = Array.from({ length: 72 }, (_, i) => ({ x: (i * 73.37 + 12) % 100, y: (i * 41.13 + 8) % 100, s: i % 6 === 0 ? 2 : 1, o: .16 + (i % 7) * .075 }));
@@ -698,7 +690,7 @@ class Scene extends React.Component {
         }
     }
     render() {
-        const { poem: p, number, onArt } = this.props;
+        const { poem: p, number } = this.props;
         const s = this.state;
         let label = s.active ? (p.type === 'fall' ? '打捞光明' : p.type === 'end' ? '继续时间' : '恢复初始') : p.action;
         if (p.type === 'windows' && s.windows.length === 20)
@@ -723,10 +715,7 @@ class Scene extends React.Component {
                     React.createElement("div", { className: "author" },
                         "\u2014 ",
                         p.author),
-                    React.createElement("div", { className: "poem-lines" }, p.lines.map((l, i) => React.createElement("p", { key: i, style: { '--line': i } }, l))),
-                    React.createElement("button", { className: "text-link", onClick: () => onArt(p) },
-                        "\u67E5\u770B\u539F\u7A3F ",
-                        React.createElement("span", null, "\u2197"))),
+                    React.createElement("div", { className: "poem-lines" }, p.lines.map((l, i) => React.createElement("p", { key: i, style: { '--line': i } }, l)))),
                 React.createElement("div", { className: "visual-column" },
                     React.createElement("div", { className: 'visual ' + p.type + (s.active ? ' active' : ''), style: { '--x': s.x + '%', '--y': s.y + '%', '--level': s.value / 100, '--shadow': (s.x - 50) * 1.1 + 'deg' }, onPointerMove: this.move, onClick: e => { if (p.type === 'rain') {
                             const r = e.currentTarget.getBoundingClientRect();
@@ -760,13 +749,12 @@ class Scene extends React.Component {
 class App extends React.Component {
     constructor() {
         super(...arguments);
-        this.state = { current: 'cover', progress: 0, art: null, menu: false };
+        this.state = { current: 'cover', progress: 0, menu: false };
         this.scroll = () => { if (this.frame)
             return; this.frame = requestAnimationFrame(() => { this.frame = null; const sections = ['cover', 'contents', ...chapters.flatMap(c => [c.id, ...poems.filter(p => p.chapter === c.id).map(p => p.id)])]; let current = 'cover'; sections.forEach(id => { if (document.getElementById(id).getBoundingClientRect().top < window.innerHeight * .45)
             current = id; }); const max = document.documentElement.scrollHeight - window.innerHeight; this.setState({ current, progress: max > 0 ? window.scrollY / max * 100 : 0 }); }); };
         this.key = (e) => { if (e.key === 'Escape')
-            this.setState({ art: null, menu: false }); };
-        this.openArt = (p) => this.setState({ art: p });
+            this.setState({ menu: false }); };
         this.nav = (id) => { this.setState({ menu: false }); go(id); };
     }
     componentDidMount() { window.addEventListener('scroll', this.scroll, { passive: true }); window.addEventListener('keydown', this.key); this.scroll(); }
@@ -809,7 +797,7 @@ class App extends React.Component {
                 React.createElement(Contents, null),
                 chapters.map(c => React.createElement(React.Fragment, { key: c.id },
                     React.createElement(Chapter, { chapter: c }),
-                    poems.filter(p => p.chapter === c.id).map(p => React.createElement(Scene, { key: p.id, poem: p, number: poems.indexOf(p) + 1, onArt: this.openArt })))),
+                    poems.filter(p => p.chapter === c.id).map(p => React.createElement(Scene, { key: p.id, poem: p, number: poems.indexOf(p) + 1 })))),
                 React.createElement("footer", { className: "ending wrap" },
                     React.createElement("div", { className: "eyebrow" }, "END / BEGIN AGAIN"),
                     React.createElement("h2", null, "\u65F6\u95F4\u6CA1\u6709\u7EC8\u70B9\u3002"),
@@ -823,15 +811,7 @@ class App extends React.Component {
             React.createElement("aside", { className: "reading-marker" },
                 React.createElement("span", null, currentPoem ? pad(poems.indexOf(currentPoem) + 1) : '—'),
                 React.createElement("i", null),
-                React.createElement("span", null, pad(poems.length))),
-            s.art && React.createElement("div", { className: "art-overlay", role: "dialog", "aria-modal": "true", "aria-label": "\u539F\u7A3F\u9884\u89C8", onClick: () => this.setState({ art: null }) },
-                React.createElement("div", { className: "art-dialog", onClick: e => e.stopPropagation() },
-                    React.createElement("div", null,
-                        React.createElement("span", null,
-                            "ORIGINAL ARTWORK / \u539F\u7A3F \u00B7 P",
-                            pad(s.art.page)),
-                        React.createElement("button", { "aria-label": "\u5173\u95ED\u539F\u7A3F", onClick: () => this.setState({ art: null }) }, "\u00D7")),
-                    React.createElement("img", { src: pageArt(s.art.page), alt: s.art.title + '原始画册页面' }))));
+                React.createElement("span", null, pad(poems.length))));
     }
 }
 ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
